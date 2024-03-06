@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<resources>
+<!--    POUR NOTIFICATION-->
+    <string name="default_notification_channel_id">your_notification_channel_id</string>
+<!--/-->
+    <string name="app_name">VakApp</string>
+    <string name="facebook_app_id">1406125976664663</string>
+    <string name="fb_login_protocol_scheme">fb1406125976664663</string>
+    <string name="facebook_client_token">7a3084f68ea3b7c503ab4de5e70c5d04</string>
+</resources>
