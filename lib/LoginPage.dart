@@ -115,7 +115,7 @@ class _LoginPageState extends State<LoginPage>{
           width: 350
           ,child: Column(children: [
             const SizedBox(height: 150,),
-            Text("Welcome to VakApp !",style: TextStyle(fontSize: 16,color: Colors.grey[700]),),
+            Text("Bienvenue chez VakApp !",style: TextStyle(fontSize: 16,color: Colors.grey[700]),),
             Text(_errorMessage,style: const TextStyle(color: Colors.red),),
             TextField(
               controller: _emailController,
@@ -140,25 +140,25 @@ class _LoginPageState extends State<LoginPage>{
               ),
               obscureText: true,
             ),
-            Row(children: [const SizedBox(width: 200,),TextButton(
+            Row(children: [const SizedBox(width: 180,),TextButton(
               onPressed: _showResetPasswordDialog,
-              child: const Text("Forgot Password?"),
+              child: const Text("Mot de passe oublié ?"),
             ),],),
-            Row(children: [const SizedBox(width: 20,),
+            Row(children: [const SizedBox(width: 10,),
               ElevatedButton(onPressed: () async {
                 _login();
-            }, child: const Text("Sign in")),
-              const SizedBox(width: 80,),
+            }, child: const Text("Se connecter")),
+              const SizedBox(width: 40,),
               ElevatedButton(onPressed: () async {
                 _createAccountMail();
-            }, child: const Text("Register now")),],),
+            }, child: const Text("Créer un compte")),],),
             const SizedBox(height: 30,),
             Row(children: [
-              const Text("or :"),
+              const Text("ou :"),
               const SizedBox(width: 30,),
               SignInButton(
                 Buttons.google,
-                text: "Sign in with Google",
+                text: "Connection avec Google",
                 onPressed: () async {
                   await AuthService().signInWithGoogle();
                 },),
@@ -167,7 +167,7 @@ class _LoginPageState extends State<LoginPage>{
               const SizedBox(width: 50,),
               SignInButton(
                 Buttons.facebook,
-                text: "Sign in with Facebook",
+                text: "Connection via Facebook",
                 onPressed: () async {
                   await AuthService().signInWithFacebook();
                 },)],)

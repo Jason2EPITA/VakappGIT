@@ -12,7 +12,20 @@
           "package_name": "com.example.vakapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "885545835957-2bmugj3l1ct3njmqg1lbu4di6196fkp8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vakapp",
+            "certificate_hash": "62137772e316225525b25aee624b8fe25d0f6ba9"
+          }
+        },
+        {
+          "client_id": "885545835957-o7tjd7qilbdtht6hrlqein7go61eikqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDzbFUil2YDYtVZFuPAyAVzkBn51nNxC5M"
@@ -20,7 +33,107 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885545835957-o7tjd7qilbdtht6hrlqein7go61eikqg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "885545835957-9kb5to85l12b48u814363me5dpef3b6k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.vakapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885545835957:android:82c367246dd6f089fa8dfc",
+        "android_client_info": {
+          "package_name": "com.vakapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885545835957-3i14r2gfa5p8bkdvjerlka21q05fpp4a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.vakapp",
+            "certificate_hash": "62137772e316225525b25aee624b8fe25d0f6ba9"
+          }
+        },
+        {
+          "client_id": "885545835957-o7tjd7qilbdtht6hrlqein7go61eikqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzbFUil2YDYtVZFuPAyAVzkBn51nNxC5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885545835957-o7tjd7qilbdtht6hrlqein7go61eikqg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "885545835957-9kb5to85l12b48u814363me5dpef3b6k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.vakapp"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885545835957:android:0b50d2324ccdca75fa8dfc",
+        "android_client_info": {
+          "package_name": "com.woxup.vakapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885545835957-8u04etd21pot1onpe4bceg2iked1okk3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.woxup.vakapp",
+            "certificate_hash": "62137772e316225525b25aee624b8fe25d0f6ba9"
+          }
+        },
+        {
+          "client_id": "885545835957-o7tjd7qilbdtht6hrlqein7go61eikqg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzbFUil2YDYtVZFuPAyAVzkBn51nNxC5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885545835957-o7tjd7qilbdtht6hrlqein7go61eikqg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "885545835957-9kb5to85l12b48u814363me5dpef3b6k.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.vakapp"
+              }
+            }
+          ]
         }
       }
     }

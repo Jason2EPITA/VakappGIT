@@ -63,7 +63,7 @@ class _AdminPriceSettingState extends State<AdminPriceSetting> {
               ),
               // Champ de prix
               TextFormField(
-                decoration: InputDecoration(labelText: 'Price (€)'),
+                decoration: const InputDecoration(labelText: 'Price (€)'),
                 keyboardType: TextInputType.number,
                 onSaved: (value) {
                   _price = double.tryParse(value!);
@@ -75,15 +75,15 @@ class _AdminPriceSettingState extends State<AdminPriceSetting> {
                   return null;
                 },
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _savePrice,
-
-                child: Text('Save Price'),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.blue,
-                  padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+                  backgroundColor: Colors.blue,
+                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
                 ),
+
+                child: const Text('Save Price'),
               ),
             ],
           ),
@@ -108,6 +108,7 @@ class _AdminPriceSettingState extends State<AdminPriceSetting> {
       catch (e) {
         print('Erreur lors de l\'ajout d\'un prix pour une plage de dates à Firestore: $e');
       }
-      Navigator.of(context).pop();    }
+      // Navigator.of(context).pop();
+    }
   }
 }

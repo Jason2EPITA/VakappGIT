@@ -557,7 +557,7 @@ class _CalendarPageState extends State<CalendarPage>{
         // Par exemple, en utilisant un SnackBar:
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Total Price: \$${totalPrice.toStringAsFixed(2)}'),
+            content: Text('Prix total: \$${totalPrice.toStringAsFixed(2)}'),
             duration: Duration(seconds: 4),
           ),
         );
@@ -799,7 +799,7 @@ class _CalendarPageState extends State<CalendarPage>{
                       print('$_rangeStart  et  $_rangeEnd');
                     }
                   },
-                  child: const Text('Book ur Appart !'),
+                  child: const Text('Je reserve !'),
                 )
               ],
             );
@@ -900,7 +900,7 @@ class PeriodSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  'Return',
+                  'Retour',
                   style: TextStyle(
                     fontWeight: FontWeight.w400,
                     fontSize: 16,

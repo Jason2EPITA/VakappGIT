@@ -308,10 +308,10 @@ class _HomePageState extends State<HomePage> {
                       value: SettingsOption.option1,
                       child: Text('Voir vos reservations'),
                     ),
-                    const PopupMenuItem<SettingsOption>(
-                      value: SettingsOption.option2,
-                      child: Text('(Pas implementé)'),
-                    ),
+                    // const PopupMenuItem<SettingsOption>(
+                    //   value: SettingsOption.option2,
+                    //   child: Text('(Pas implementé)'),
+                    // ),
                     // Ajoutez d'autres éléments de menu ici si nécessaire
                   ],
                   icon: const Icon(Icons.settings),

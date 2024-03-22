@@ -1,4 +1,4 @@
-package com.example.vakapp
+package com.woxup.vakapp
 
 import io.flutter.embedding.android.FlutterActivity
 

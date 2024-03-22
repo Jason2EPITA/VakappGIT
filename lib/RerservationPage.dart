@@ -139,8 +139,8 @@ class _ReservationPageState extends State<ReservationPage> {
             margin: const EdgeInsets.all(8.0),
             child: ListTile(
               leading: const Icon(Icons.calendar_today, color: Colors.blue),
-              title: Text('From: ${formatDate(reservation.start)} \nTo: ${formatDate(reservation.end)}'),
-              subtitle: Text('Status: $statusText'),
+              title: Text('Du: ${formatDate(reservation.start)} \nau: ${formatDate(reservation.end)}'),
+              subtitle: Text('Statut: $statusText'),
               isThreeLine: true,
               trailing: Row(
                 mainAxisSize: MainAxisSize.min, // Important pour limiter la taille de la Row à son contenu
