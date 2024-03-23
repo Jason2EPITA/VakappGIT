@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:myapp/services/authentification.dart';
 import 'package:sign_in_button/sign_in_button.dart';
 
+import 'VerificationEmailScreen.dart';
+
 class ReservObj {
   DateTime start;
   DateTime end;
@@ -33,7 +35,6 @@ class _LoginPageState extends State<LoginPage>{
   final TextEditingController _passwordController = TextEditingController();
   String _errorMessage = "";
 
-
   void _createAccountMail() async {
     await AuthService().CreatWithEmail(
       _emailController.text,
@@ -45,6 +46,24 @@ class _LoginPageState extends State<LoginPage>{
       },
     );
   }
+  //Version 2 pour la verif de l'email
+  void _createAccountMail2() async {
+    await AuthService().createWithEmail2(
+      _emailController.text,
+      _passwordController.text,
+          (String errorMessage) {
+        setState(() {
+          _errorMessage = errorMessage;
+        });
+      },context
+    );
+      // Rediriger l'utilisateur vers l'écran de vérification d'email
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => VerificationEmailScreen()),
+      );
+  }
+
   void _login() async {
     await AuthService().LogWithEmail(
       _emailController.text,
@@ -150,7 +169,7 @@ class _LoginPageState extends State<LoginPage>{
             }, child: const Text("Se connecter")),
               const SizedBox(width: 40,),
               ElevatedButton(onPressed: () async {
-                _createAccountMail();
+                _createAccountMail2();
             }, child: const Text("Créer un compte")),],),
             const SizedBox(height: 30,),
             Row(children: [
@@ -163,15 +182,15 @@ class _LoginPageState extends State<LoginPage>{
                   await AuthService().signInWithGoogle();
                 },),
             ],),
-            Row(children: [
-              const SizedBox(width: 50,),
-              SignInButton(
-                Buttons.facebook,
-                text: "Connection via Facebook",
-                onPressed: () async {
-                  await AuthService().signInWithFacebook();
-                },)],)
-
+            //Decommenter pour activer la connexion avec facebook (mais il faut regler le probleme)
+            // Row(children: [
+            //   const SizedBox(width: 50,),
+            //   SignInButton(
+            //     Buttons.facebook,
+            //     text: "Connection via Facebook",
+            //     onPressed: () async {
+            //       await AuthService().signInWithFacebook();
+            //     },)],)
           ],)
             ,)
           ,)

@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
               _googleEmail = user.email.toString();
               UserList.add(_googleEmail);
               print("MY USER IS $_googleEmail");
-              if (_googleEmail == 'starsjason43@gmail.com') {
+              if (_googleEmail == 'starsjason43@gmail.com'|| 'testforgoogle@gmail.com' == _googleEmail) {
                 return const AdminPage();
               } else {
                 return const HomePage();
@@ -105,6 +105,38 @@ class _HomePageState extends State<HomePage> {
     // Ajoutez d'autres chemins d'images selon vos besoins
   ];
   double _currentIndex = 0;
+  Future<void> deleteUserAuthAccount() async {
+    try {
+      await FirebaseAuth.instance.currentUser?.delete();
+      print("Compte utilisateur supprimé avec succès.");
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
+      );
+    } catch (e) {
+      print("Erreur lors de la suppression du compte utilisateur: $e");
+    }
+  }
+  Future<void> deleteUserFirestoreData(String userName) async {
+    List<String> collections = ['conditions and cookies', 'messages', 'users']; // Liste des collections à parcourir
+
+    for (String collection in collections) {
+      // Récupère les documents correspondant au nom de l'utilisateur dans la collection courante
+      var querySnapshot = await FirebaseFirestore.instance
+          .collection(collection)
+          .where('user', isEqualTo: userName)
+          .get();
+
+      // Boucle sur les documents trouvés pour les supprimer
+      for (var doc in querySnapshot.docs) {
+        await FirebaseFirestore.instance
+            .collection(collection)
+            .doc(doc.id)
+            .delete();
+      }
+    }
+  }
+
   Future<void> checkConditions() async {
     final user = FirebaseAuth.instance.currentUser;
     if (user != null) {
@@ -125,28 +157,21 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    checkConditions();
+    // Attendre un bref délai pour permettre à la route de s'initialiser
+    Future.delayed(Duration.zero, () async {
+      User? user = FirebaseAuth.instance.currentUser;
+      // Recharge les données de l'utilisateur depuis Firebase
+      await user?.reload();
+      // Vérifie si l'email de l'utilisateur est vérifié avant d'exécuter checkConditions
+      if (user != null && user.emailVerified) {
+        checkConditions();
+      }
+    });
   }
+
+
   bool? conditionsChecked = false;
   bool? isChecked = false;
-
-  // Fonction pour vérifier les conditions
-  // Future<void> checkConditions() async {
-  //   final user = FirebaseAuth.instance.currentUser;
-  //   if (user != null) {
-  //     final userid = user.uid;
-  //     final collectionRef = FirebaseFirestore.instance.collection('conditions and cookies');
-  //     final doc = await collectionRef.doc(userid).get();
-  //
-  //     if (!doc.exists || doc.data()?['conditions'] != true) {
-  //       displayDialogue(); // Conditions non acceptées ou document inexistant
-  //     } else {
-  //       conditionsChecked = true; // Conditions acceptées
-  //     }
-  //   } else {
-  //     displayDialogue(); // Utilisateur non connecté
-  //   }
-  // }
 
   void displayDialogue(){
     showDialog(
@@ -286,7 +311,7 @@ class _HomePageState extends State<HomePage> {
               backgroundColor: Colors.blue,
               title: Row(children: [
                 PopupMenuButton<SettingsOption>(
-                  onSelected: (SettingsOption result) {
+                  onSelected: (SettingsOption result) async {
                     // Gérez vos actions ici
                     switch (result) {
                       case SettingsOption.option1:
@@ -298,7 +323,11 @@ class _HomePageState extends State<HomePage> {
                                 }));
                         break;
                       case SettingsOption.option2:
-                        print('Option 2 sélectionnée');
+                        if (_googleEmail != null) {
+                          await deleteUserFirestoreData(_googleEmail); // Supprime d'abord les données de l'utilisateur
+                          await deleteUserAuthAccount(); // Ensuite, supprime le compte d'authentification
+                          // Redirigez l'utilisateur ou fermez la session ici, si nécessaire
+                        }
                         break;
                     // Ajoutez d'autres cas si nécessaire
                     }
@@ -308,10 +337,10 @@ class _HomePageState extends State<HomePage> {
                       value: SettingsOption.option1,
                       child: Text('Voir vos reservations'),
                     ),
-                    // const PopupMenuItem<SettingsOption>(
-                    //   value: SettingsOption.option2,
-                    //   child: Text('(Pas implementé)'),
-                    // ),
+                    const PopupMenuItem<SettingsOption>(
+                      value: SettingsOption.option2,
+                      child: Text('Surppimer mon compte'),
+                    ),
                     // Ajoutez d'autres éléments de menu ici si nécessaire
                   ],
                   icon: const Icon(Icons.settings),

@@ -1,7 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+
+import '../VerificationEmailScreen.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -70,10 +74,9 @@ Future<void> logOut() => _auth.signOut().then((value) => null);
       }
       onError(errorMessage);
     } catch (e) {
-      onError('An unexpected error occurred');
+      onError('An unexpected error occurred : $e');
     }
   }
-
   Future<void> LogWithEmail(
       String email,
       String password,
@@ -128,5 +131,21 @@ Future<void> logOut() => _auth.signOut().then((value) => null);
   Future<void> signOutGoogle() async {
     _googleSignIn.signOut();
     return _auth.signOut();
+  }
+  //conexion avec email version2
+  Future<void> createWithEmail2(String email, String password, Function(String) errorCallback, BuildContext context) async {
+    try {
+      UserCredential userCredential = await _auth.createUserWithEmailAndPassword(email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        errorCallback("Le mot de passe est trop faible.");
+      } else if (e.code == 'email-already-in-use') {
+        errorCallback("Un compte existe déjà avec cet e-mail.");
+      } else {
+        errorCallback("Une erreur est survenue lors de la création du compte.");
+      }
+    } catch (e) {
+      errorCallback("Une erreur est survenue lors de la création du compte. ");
+    }
   }
 }
