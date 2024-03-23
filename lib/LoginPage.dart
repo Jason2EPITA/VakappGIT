@@ -55,13 +55,21 @@ class _LoginPageState extends State<LoginPage>{
         setState(() {
           _errorMessage = errorMessage;
         });
-      },context
+        // Affiche un Snackbar avec le message d'erreur si l'email est déjà utilisé
+        if(errorMessage == "Un compte existe déjà avec cet e-mail.") {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(errorMessage)),
+          );
+        } else {
+          // Si l'erreur n'est pas due à un email déjà utilisé, redirige vers VerificationEmailScreen
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => VerificationEmailScreen()),
+          );
+        }
+      },
+      context,
     );
-      // Rediriger l'utilisateur vers l'écran de vérification d'email
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (context) => VerificationEmailScreen()),
-      );
   }
 
   void _login() async {
